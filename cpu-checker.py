@@ -1,6 +1,9 @@
 import psutil
 import time
 
+
+print(psutil.__version__)
+
 # Set the CPU usage threshold (in percentage)
 THRESHOLD = 80  # Adjust this as needed
 
