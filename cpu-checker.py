@@ -1,11 +1,18 @@
 import psutil
 import time
-
+import subprocess
 
 print(psutil.__version__)
 
 # Set the CPU usage threshold (in percentage)
 THRESHOLD = 80  # Adjust this as needed
+
+# Function to run the continuous check script
+def run_continous_check():
+    try:
+        subprocess.run(["python", "continousCheck.py"], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error occurred while running continuousCheck.py: {e}")
 
 # Function to monitor CPU usage
 def monitor_cpu(threshold):
@@ -20,6 +27,7 @@ def monitor_cpu(threshold):
         # Check if CPU usage exceeds the threshold
         if cpu_usage > threshold:
             print(f"ALERT: CPU usage spike detected! Usage is at {cpu_usage}%")
+            run_continous_check()  # Run the continuous check script when a spike is detected
         
         # Wait a short time before checking again
         time.sleep(1)
