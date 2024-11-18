@@ -24,8 +24,32 @@ if os_name == "Darwin":  # Darwin is the name for macOS
 
 elif os_name == "Windows":
     print("Running on Windows")
+
+    cpu_percent = psutil.cpu_percent(interval=1)
+    cpu_percentages = psutil.cpu_percent(interval=1, percpu=False)
+
+    print(f"CPU usage: {cpu_percent}%")
+    
+    cpu_times = psutil.cpu_times()
+
+    print(f"User: {cpu_times.user}%")
+    print(f"System: {cpu_times.system}%")
+    print(f"Idle: {cpu_times.idle}%")
+    
 elif os_name == "Linux":
     print("Running on Linux")
+
+    cpu_percent = psutil.cpu_percent(interval=1)
+    cpu_percentages = psutil.cpu_percent(interval=1, percpu=False)
+
+    print(f"CPU usage: {cpu_percent}%")
+    
+    cpu_times = psutil.cpu_times()
+
+    print(f"User: {cpu_times.user}%")
+    print(f"System: {cpu_times.system}%")
+    print(f"Idle: {cpu_times.idle}%")
+    
 else:
     print("Unknown OS")
 
